@@ -1,0 +1,10 @@
+﻿Der Buildvorgang wurde am 22.11.2016 12:36:48 gestartet.
+     1>Projekt "C:\Users\arminleptop\documents\visual studio 2012\Projects\Gra_CV\Gra_CV\Gra_CV.vcxproj" auf Knoten "2", Build Ziel(e).
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\arminleptop\documents\visual studio 2012\Projects\Gra_CV\x64\Debug\Gra_CV.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files\opencv\opencv\build\x64\vc14\lib" opencv_world310d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\arminleptop\documents\visual studio 2012\Projects\Gra_CV\x64\Debug\Gra_CV.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\arminleptop\documents\visual studio 2012\Projects\Gra_CV\x64\Debug\Gra_CV.lib" /MACHINE:X64 x64\Debug\Main.obj
+         Gra_CV.vcxproj -> C:\Users\arminleptop\documents\visual studio 2012\Projects\Gra_CV\x64\Debug\Gra_CV.exe
+     1>Die Erstellung des Projekts "C:\Users\arminleptop\documents\visual studio 2012\Projects\Gra_CV\Gra_CV\Gra_CV.vcxproj" ist abgeschlossen, Build Ziel(e).
+
+Build erfolgreich.
+
+Verstrichene Zeit 00:00:00.53

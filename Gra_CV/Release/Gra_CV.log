@@ -1,0 +1,18 @@
+﻿Der Buildvorgang wurde am 15.11.2016 13:09:16 gestartet.
+     1>Projekt "C:\Users\arminleptop\documents\visual studio 2012\Projects\Gra_CV\Gra_CV\Gra_CV.vcxproj" auf Knoten "2", Build Ziel(e).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /IC:\Users\arminleptop\Downloads\opencv\opencv\build\include /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Main.cpp
+         Main.cpp
+     1>c:\users\arminleptop\documents\visual studio 2012\projects\gra_cv\gra_cv\PRA1.hpp(32): warning C4244: '=': Konvertierung von 'std::streamoff' in 'int', möglicher Datenverlust
+     1>Main.cpp(67): warning C4018: '<': Konflikt zwischen 'signed' und 'unsigned'
+     1>Main.cpp(68): warning C4018: '<': Konflikt zwischen 'signed' und 'unsigned'
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\arminleptop\documents\visual studio 2012\Projects\Gra_CV\Release\Gra_CV.exe" /NOLOGO /LIBPATH:C:\Users\arminleptop\Downloads\opencv\opencv\build\x86\vc12\lib opencv_core2413d.lib opencv_core2413.lib opencv_highgui2413.lib opencv_highgui2413d.lib opencv_imgproc2413.lib opencv_imgproc2413d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\arminleptop\documents\visual studio 2012\Projects\Gra_CV\Release\Gra_CV.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\arminleptop\documents\visual studio 2012\Projects\Gra_CV\Release\Gra_CV.lib" /MACHINE:X86 /SAFESEH Release\Main.obj
+         Code wird generiert.
+         Codegenerierung ist abgeschlossen.
+         Gra_CV.vcxproj -> C:\Users\arminleptop\documents\visual studio 2012\Projects\Gra_CV\Release\Gra_CV.exe
+     1>Die Erstellung des Projekts "C:\Users\arminleptop\documents\visual studio 2012\Projects\Gra_CV\Gra_CV\Gra_CV.vcxproj" ist abgeschlossen, Build Ziel(e).
+
+Build erfolgreich.
+
+Verstrichene Zeit 00:00:01.76
