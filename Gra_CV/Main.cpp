@@ -5,6 +5,7 @@
 #include <ostream>
 #include <fstream>
 #include "PRA1.hpp"
+#include "PRA2.hpp"
 #include "opencv2\highgui.hpp"
 #include "opencv2\core.hpp"
 #include "opencv2\imgproc.hpp"

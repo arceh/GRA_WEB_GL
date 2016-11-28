@@ -30,7 +30,23 @@ vector<Point3i> createTriangle(vector<Point3i> vec1, vector<Point3i> vec2) {
 	int veclang, py;
 	vector<Point3i> indi;
 
-	for (int x = 0; x < vec1.size(); x++) {
+	for (vector<Point3i>::iterator itvec1 = vec1.begin(); itvec1 != vec1.end(); ++itvec1) {
+		for (vector<Point3i>::iterator itvec2 = vec2.begin(); itvec2 != vec1.end(); ++itvec2) {
+			dist = pytago(vec1[x].x - vec2[y].x, vec1[x].y - vec2[y].y);
+
+			if (dist < shortest) {
+				shortest = dist;
+				py = y;
+
+			}
+		}
+		mapp.insert(pair<int, int>(x, py));
+
+		shortest = DBL_MAX;
+		py = 0;
+	}
+
+	/*for (int x = 0; x < vec1.size(); x++) {
 		if (vec2.size()>0) {
 			for (int y = 0; y < vec2.size(); y++) {
 
@@ -50,11 +66,16 @@ vector<Point3i> createTriangle(vector<Point3i> vec1, vector<Point3i> vec2) {
 			shortest = DBL_MAX;
 			py = 0;
 		}
-	}
+	}*/
 
 	veclang = vec1.size();
 
-	for (int x = 0; x < mapp.size(); x++) {
+	for (map<int, int>::iterator itmapp = mapp.begin(); itmapp != mapp.end(); ++itmapp) {
+		cout << itmapp->first;
+		cout << itmapp->second;
+	}
+
+	/*for (int x = 0; x < mapp.size(); x++) {
 
 		int next = (x + 1) % mapp.size();
 
@@ -62,7 +83,7 @@ vector<Point3i> createTriangle(vector<Point3i> vec1, vector<Point3i> vec2) {
 			indi.insert(indi.end(), Point3i(x, mapp[x] + veclang, mapp[next] + veclang));
 			indi.insert(indi.end(), Point3i(x, x + 1, mapp[next] + veclang));
 		}
-	}
+	}*/
 
 	return indi;
 }
