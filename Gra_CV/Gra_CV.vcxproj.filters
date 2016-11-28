@@ -23,5 +23,11 @@
     <ClInclude Include="PRA1.hpp">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="PRA2.hpp">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\GRA\GRA-P\GRA-P\Praktikum2.hpp">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

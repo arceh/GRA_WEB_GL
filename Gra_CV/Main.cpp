@@ -26,8 +26,11 @@ int main()
 
 	namedWindow("DISPLAY_WINDOW1", WINDOW_AUTOSIZE);
 	namedWindow("DISPLAY_WINDOW2", WINDOW_AUTOSIZE);
+	namedWindow("DISPLAY_WINDOW3", WINDOW_AUTOSIZE);
 
-	
+	moveWindow("DISPLAY_WINDOW1", 0, 0);
+	moveWindow("DISPLAY_WINDOW2", 520, 0);
+	moveWindow("DISPLAY_WINDOW3", 1040, 0);
 
 	vector<vector<Point>> tempConturs;
 
@@ -56,6 +59,11 @@ int main()
 			segment(SCHWELLWERT, &bild16, &bild8);
 
 			imshow("DISPLAY_WINDOW2", bild8);
+
+			//Hier neues Bild erzeugen
+
+			imshow("DISPLAY_WINDOW3", bild8);
+
 			waitKey(10);
 
 			tempConturs =konture(&bild8);
