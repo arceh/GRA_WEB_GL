@@ -30,96 +30,100 @@ vector<Point> convertToVec(vector<vector<Point>> old) {
 }
 
 double euklid(Point big, Point small) {
-	return sqrt(pow((big.x - big.y), 2.0) + pow((small.x - small.y), 2.0));
+	return sqrt(pow((big.x - small.x), 2.0) + pow((big.y - small.y), 2.0));
 }
 
-int vecIndice(vector<vector<Point>> vvPoint) {
+void constructJSONTriangle(vector<Point> vPointBig, vector<Point> vPointSmall, int index, int smal, int indexbig, vector<int> indices) {
+
+	ofstream outfile("..\\vortex\\" + to_string(index) + ".json");
+	outfile << "{ \"vertices\": [";
+
+	for (int j = 0; j < vPointBig.size(); j++) {
+		outfile << vPointBig[j].x << ", " << vPointBig[j].y << ", " << indexbig << ",";
+
+	}
+	for (int j = 0; j < vPointSmall.size(); j++) {
+		outfile << vPointSmall[j].x << ", " << vPointSmall[j].y << ", " << smal;
+
+		if (!(j == vPointSmall.size() - 1)) {
+			outfile << ", ";
+		}
+	}
+
+	outfile << "],\n";
+	outfile << "\"indices\": [";
+	for (int i = 0;i < indices.size();i++) {
+		outfile << indices[i];
+		if (!(i == indices.size() - 1)) {
+			outfile << ", ";
+		}
+	}
+	outfile << "] }";
+	outfile.close();
+
+
+}
+
+vector<int> vecIndice(vector<vector<Point>> vvPoint) {
 	vector<int> tempIndices;
-	double tempDist = DBL_MAX;
-	double tempERG;
-	int tempIndex;
-	int index = 0;
-	int smallPcounter = 0;
-	int lastSmallPointIndex = 0;
-	for (vector<vector<Point>>::iterator itvp = vvPoint.begin(); itvp != vvPoint.end(); ++itvp) {
-		if ((itvp + 1)->size() <= itvp->size()) {
-			for (vector<Point>::iterator itpBig = itvp->begin(); itpBig != itvp->end(); ++itpBig) {
-				smallPcounter = 0;
-				for (vector<Point>::iterator itpSmalls = (itvp + 1)->begin(); itpSmalls != (itvp + 1)->end(); ++itpSmalls) {
-					tempERG = euklid(itpBig->dot, itpSmalls->dot);
-					if (tempDist > tempERG) {
-						tempDist = tempERG;
-						tempIndex = smallPcounter;
-					}
-					smallPcounter++;
-				}
-				tempIndices.push_back(index);
-				tempIndices.push_back(smallPcounter + itvp->size());
-				tempIndices.push_back(index + 1);
-				lastSmallPointIndex = smallPcounter;
-			}
-			constructJSONTriangle(*itvp, *(itvp + 1), index, true, tempIndices);
-		}
-		else {
-			for (vector<Point>::iterator itp = (itvp + 1)->begin(); itp != (itvp + 1)->end(); ++itp) {
-
-			}
-			constructJSONTriangle(*(itvp + 1), *itvp, index, false, tempIndices);
-		}
-		index++;
-	}
-
-	return 0;
-}
-
-int constructJSONTriangle(vector<Point> &vPointBig, vector<Point> &vPointSmall, int index, bool big, vector<int> &indices) {
-	if (big) {
-		ofstream outfile("../contures/" + to_string(index) + ".json");
-		outfile << "{ \"vertices\": [";
-		for (vector<Point>::iterator itpb = vPointBig.begin(); itpb != vPointBig.end(); ++itpb) {
-				outfile << itpb->x << ", " << itpb->y << ", " << index << ", ";
-			}
-		for (vector<Point>::iterator itps = vPointSmall.begin(); itps != vPointSmall.end(); ++itps) {
-			outfile << itps->x << ", " << itps->y << ", " << index + 1;
-			if (((itps - 1) != vPointSmall.end())) {
-				outfile << ", ";
-			}
-		}
-		outfile << "], ";
-		outfile << " \"indices\": [";
-		for (vector<int>::iterator itindi = indices.begin(); itindi != indices.end(); ++itindi) {
-			outfile << &itindi;
-			if (((itindi - 1) != indices.end())) {
-				outfile << ", ";
-			}
-		}
-		outfile << "] }";
-		outfile.close();
-	}
-	else {
-		ofstream outfile("../contures/" + to_string(index + 1) + ".json");
-		outfile << "{ \"vertices\": [";
-		for (vector<Point>::iterator itpb = vPointBig.begin(); itpb != vPointBig.end(); ++itpb) {
-			outfile << itpb->x << ", " << itpb->y << ", " << index + 1 << ", ";
-		}
-		for (vector<Point>::iterator itps = vPointSmall.begin(); itps != vPointSmall.end(); ++itps) {
-			outfile << itps->x << ", " << itps->y << ", " << index;
-			if (((itps - 1) != vPointSmall.end())) {
-				outfile << ", ";
-			}
-		}
-		outfile << "], ";
-		outfile << " \"indices\": [";
-		for (vector<int>::iterator itindi = indices.begin(); itindi != indices.end(); ++itindi) {
-			outfile << &itindi;
-			if (((itindi - 1) != indices.end())) {
-				outfile << ", ";
-			}
-		}
-		outfile << "] }";
-		outfile.close();
-	}
-	return 0;
-
+	vector<int>realini;
+	int tempindex = 0;
 	
+	for (int i=0 ;(i+1) < vvPoint.size();i++) {
+		if (vvPoint[i].size() > vvPoint[i + 1].size()) {
+			for (int j = 0;j < vvPoint[i].size();j++) {
+				double tempgrr = 900000;
+				for (int k = 0;k < vvPoint[i+1].size();k++) {
+					if (10.0 > euklid(vvPoint[i][j], vvPoint[i + 1][k])) {
+						if (tempgrr > euklid(vvPoint[i][j], vvPoint[i + 1][k])) {
+							tempgrr = euklid(vvPoint[i][j], vvPoint[i + 1][k]);
+							tempindex = k;
+						}
+					}
+				}
+				tempIndices.insert(tempIndices.end(), j);
+				tempIndices.insert(tempIndices.end(), tempindex);
+			}
+			for (int p = 0;(p+3) < tempIndices.size();p=p+2) {
+				realini.insert(realini.end(), tempIndices[p]);
+				realini.insert(realini.end(), vvPoint[i].size()+tempIndices[p+1]);
+				realini.insert(realini.end(), vvPoint[i].size()+tempIndices[p + 3]);
+
+				realini.insert(realini.end(), tempIndices[p]);
+				realini.insert(realini.end(), vvPoint[i].size()+tempIndices[p + 3]);
+				realini.insert(realini.end(), tempIndices[p + 2]);
+			}
+			constructJSONTriangle(vvPoint[i], vvPoint[i+1], i, i+1, i, realini);
+		}//if end
+		else {
+			for (int j = 0;j < vvPoint[i+1].size();j++) {
+				double tempgrr = 900000;
+				for (int k = 0;k < vvPoint[i].size();k++) {
+					if (10.0 > euklid(vvPoint[i][j], vvPoint[i + 1][k])) {
+						if (tempgrr > euklid(vvPoint[i][j], vvPoint[i + 1][k])) {
+							tempgrr = euklid(vvPoint[i][j], vvPoint[i + 1][k]);
+							tempindex = k;
+						}
+					}
+				}
+				tempIndices.insert(tempIndices.end(), j);
+				tempIndices.insert(tempIndices.end(), tempindex);
+			}
+			for (int p = 0;(p + 3) < tempIndices.size();p = p + 2) {
+				realini.insert(realini.end(), tempIndices[p]);
+				realini.insert(realini.end(), vvPoint[i+1].size() + tempIndices[p + 1]);
+				realini.insert(realini.end(), vvPoint[i+1].size() + tempIndices[p + 3]);
+
+				realini.insert(realini.end(), tempIndices[p]);
+				realini.insert(realini.end(), vvPoint[i+1].size() + tempIndices[p + 3]);
+				realini.insert(realini.end(), tempIndices[p + 2]);
+			}
+			constructJSONTriangle(vvPoint[i + 1], vvPoint[i], i, i, i + 1, realini);
+		}//else end
+		tempIndices.clear();
+		realini.clear();
+	}//alleconturen end
+
+	return realini;
 }
+

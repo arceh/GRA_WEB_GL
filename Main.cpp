@@ -88,14 +88,16 @@ int main()
 			allcontinone.insert(allcontinone.end(), convertToVec(tempConturs));
 
 		}
-
+		vector<int> test;
+		test = vecIndice(allcontinone);
+		//cout << test[0];
 	}
 	catch (const std::exception& error)
 	{
 		cout << error.what() << endl;
 	}
 
-	waitKey();
+	//waitKey();
 
 	return 0;
 }
