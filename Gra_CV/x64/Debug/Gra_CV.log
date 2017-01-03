@@ -1,4 +1,0 @@
-﻿  Main.cpp
-c:\users\vdd\documents\github\gra_web_gl\gra_cv\pra1.hpp(32): warning C4244: '=': conversion from 'std::streamoff' to 'int', possible loss of data
-  Gra_CV.vcxproj -> C:\Users\vdd\Documents\GitHub\GRA_WEB_GL\x64\Debug\Gra_CV.exe
-  Gra_CV.vcxproj -> C:\Users\vdd\Documents\GitHub\GRA_WEB_GL\x64\Debug\Gra_CV.pdb (Full PDB)
