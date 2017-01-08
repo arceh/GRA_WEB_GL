@@ -46,6 +46,7 @@ var model=[];
 var modelLoaded;
 var vortexarr=[];
 var indexarr=[];
+var normalarr=[];
 /*
 * Erzeugung eines Programms mit Vertex Shader und Fragment-Shader
 */
@@ -121,8 +122,13 @@ function handleLoadedModel(filename, payload) {
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, IndexBuffer);
     gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(payload.indices), gl.STATIC_DRAW);
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null);
+	NormalBuffer=gl.createBuffer();
+	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, NormalBuffer);
+    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(payload.normal), gl.STATIC_DRAW);
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null);
 	vortexarr.push(VertexBuffer);
 	indexarr.push(IndexBuffer);
+	normalarr.push(NormalBuffer);
     modelLoaded = true;
 }
 
@@ -197,11 +203,21 @@ function drawScene() {
         prg.pMatrixUniform = gl.getUniformLocation(prg, 'uPMatrix');
         prg.mvMatrixUniform = gl.getUniformLocation(prg, 'uMVMatrix');
         prg.ColorUniform = gl.getUniformLocation(prg, 'inColor');
+		
         Color[0] = 1.0;
         Color[1] = 1.0;
         Color[2] = 1.0;
         gl.uniformMatrix4fv(prg.pMatrixUniform, false, pMatrix);
         gl.uniformMatrix4fv(prg.mvMatrixUniform, false, mvMatrix);
+		    prg.light_loc_pos = gl.getUniformLocation(prg, 'LightSource.pos');
+    //gl.uniform4f(prg.light_loc_pos, Math.cos(w*Math.PI/180)*5,0.0,Math.sin(w*Math.PI/180)*5, 1.0);
+	for(var i=0;i<233;i++){
+	//mat4.set(mvMatrix,normalarr);
+    //mat4.invert();
+   // mat4.transpose(normalarr, normalarr);
+    //prg.MVP_loc_proj = gl.getUniformLocation(prg, 'normalarr');
+	}
+		//draw
 		for(var i=0;i<233;i++){
 		gl.uniform3fv(prg.ColorUniform, Color);
         gl.bindBuffer(gl.ARRAY_BUFFER, vortexarr[i]);
