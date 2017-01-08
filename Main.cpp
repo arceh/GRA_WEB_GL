@@ -92,9 +92,10 @@ int main()
 
 		}
 		vector<int> test;
-		test = vecIndice(allcontinone);
+		//test = vecIndice(allcontinone);
 		//cout << test[0];
-		oberflaeche(allebilder,allcontinone);
+		vector<vector<double>> allOberNormalen=oberflaeche(allebilder,allcontinone);
+		vecIndice3(allcontinone, allOberNormalen);
 	}
 	catch (const std::exception& error)
 	{
