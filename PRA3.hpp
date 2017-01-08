@@ -18,10 +18,11 @@ vector<vector<double>> oberflaeche(vector<Mat> bild,vector<vector<Point>> allepu
 	{
 		for (size_t j = 0; j < allepunkte[i].size(); j++)
 		{
-			double x;
-			x=bild[i].at<uchar>(allepunkte[i][j+1])- bild[i].at<uchar>(allepunkte[i-1][j]);
-
-			oberfaechennormale[i].insert(oberfaechennormale.end(), );
+			double x,y,z;
+			x=bild[i].at<uchar>(allepunkte[i][j].x+1,allepunkte[i][j].y)- bild[i].at<uchar>(allepunkte[i][j].x - 1, allepunkte[i][j].y);
+			y= bild[i].at<uchar>(allepunkte[i][j].x,allepunkte[i][j].y+1)- bild[i].at<uchar>(allepunkte[i][j].x, allepunkte[i][j].y - 1);
+			z = bild[i].at<uchar>(allepunkte[i][j+1].x, allepunkte[i][j+1].y)- bild[i].at<uchar>(allepunkte[i][j].x, allepunkte[i][j].y );
+			oberfaechennormale[i].insert(oberfaechennormale[i].end(), x);
 
 			
 		}

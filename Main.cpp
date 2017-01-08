@@ -6,6 +6,7 @@
 #include <fstream>
 #include "PRA1.hpp"
 #include "PRA2.hpp"
+#include "PRA3.hpp"
 #include "opencv2\highgui.hpp"
 #include "opencv2\core.hpp"
 #include "opencv2\imgproc.hpp"
@@ -38,6 +39,7 @@ int main()
 
 	try
 	{
+		vector<Mat> allebilder;
 		for (int i = START; i <= END; i++) {
 			Mat bild16(512, 512, CV_16U);
 			Mat bild8(512, 512, CV_8U);
@@ -86,11 +88,13 @@ int main()
 			outfile << "] }";
 			outfile.close();
 			allcontinone.insert(allcontinone.end(), convertToVec(tempConturs));
+			allebilder.insert(allebilder.end(), bild8);
 
 		}
 		vector<int> test;
 		test = vecIndice(allcontinone);
 		//cout << test[0];
+		oberflaeche(allebilder,allcontinone);
 	}
 	catch (const std::exception& error)
 	{

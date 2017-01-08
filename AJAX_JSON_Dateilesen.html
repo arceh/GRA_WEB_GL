@@ -126,24 +126,72 @@ function handleLoadedModel(filename, payload) {
     modelLoaded = true;
 }
 
+function trans(tx,ty,tz) {
+	return[
+		1,0,0,0,
+		0,1,0,0,
+		0,0,1,0,
+		tx,ty,tz,1,
+	];
+
+}
+
 /**
 * Zeichnen der Szene
 */
+function rotationX(mat,winkel){
+	var c=Math.cos(winkel);
+	var s=Math.sin(winkel);
+	return [
+		1,0,0,0,
+		0,c,s,0,
+		0,-s,c,0,
+		0,0,0,1,
+	];
+
+}
+function rotationY(mat,winkel){
+	var c=Math.cos(winkel);
+	var s=Math.sin(winkel);
+	return [
+		c,0,-s,0,
+		0,1,0,0,
+		s,0,c,0,
+		0,0,0,1,
+	];
+
+}
+function rotationZ(mat,winkel){
+	var c=Math.cos(winkel);
+	var s=Math.sin(winkel);
+	return [
+		c,s,0,0,
+		-s,c,0,0,
+		0,0,1,0,
+		0,0,0,1,
+	];
+
+}
 function drawScene() {
     if (modelLoaded) {
         gl.clearColor(0.0, 0.0, 0.0, 1.0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
         gl.viewport(0, 0, c_width, c_height);
-        mat4.ortho(pMatrix, 0.0, 400.0, 0.0, 500.0, 500.0, -500.0);
+        mat4.ortho(pMatrix, -256.0, 256.0, -200.0, 250.0, -1000.0, 1000.0);
         mat4.identity(mvMatrix);
-		//mat4.identity(pMatrix);
-		var translation = vec3.create();
-		vec3.set (translation, 50.0, 100.0, 0.0);
-		mat4.translate (mvMatrix, mvMatrix, translation);
+		//mat4.multiply(mvMatrix,mvMatrix,trans(c_width/2,100,0))
+		
+		//mat4.multiply(mvMatrix,mvMatrix,rotationY(mat4,Math.PI*w/360));
+		//mat4.multiply(mvMatrix,mvMatrix,rotationX(mat4,80));
+		//mat4.translate (mvMatrix, mvMatrix, [450,0,0.0]);
+		
 		mat4.rotateX(mvMatrix,mvMatrix,-80*Math.PI/180);
 		mat4.rotateZ(mvMatrix,mvMatrix,w*Math.PI/180);
-		vec3.set (translation, -50.0, -100.0, 0.0);
-		mat4.translate (mvMatrix, mvMatrix, translation);
+		//mat4.identity(pMatrix);
+		mat4.translate (mvMatrix, mvMatrix, [-256,-256,0.0]);
+		mat4.translate (mvMatrix, mvMatrix, [0,0,0.0]);
+		//mat4.translate (mvMatrix, mvMatrix, [256,0,0.0]);
+		//mat4.multiply(mvMatrix,mvMatrix,trans(-(c_width/2),0,0))
 		w++;
         prg.vertexPositionAttribute = gl.getAttribLocation(prg, 'aVertexPosition');
         prg.pMatrixUniform = gl.getUniformLocation(prg, 'uPMatrix');
